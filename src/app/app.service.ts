@@ -6,11 +6,11 @@ import { AlertService } from './services/alert.service';
 import { Constants } from './app.constants';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json', Authorization: 'Basic ' + btoa('user:clave123') })
 };
 
 const httpOptionsImage = {
-  headers: new HttpHeaders({ 'enctype': 'multipart/form-data' })
+  headers: new HttpHeaders({ 'enctype': 'multipart/form-data', Authorization: 'Basic ' + btoa('user:clave123') })
 };
 
 @Injectable()
@@ -64,7 +64,7 @@ export class AppService {
   getRequest(path: string, data: any = '') {
     this.alertService.loader();
     let promise = new Promise((resolve, reject) => {
-      this.http.get(`${Constants.API_ENDPOINT}/${path}${data}`)
+      this.http.get(`${Constants.API_ENDPOINT}/${path}${data}`, httpOptions)
         .toPromise()
         .then(
           resp => {
@@ -84,7 +84,7 @@ export class AppService {
   deleteRequest(path: string, data: any) {
     this.alertService.loader();
     let promise = new Promise((resolve, reject) => {
-      this.http.delete(`${Constants.API_ENDPOINT}/${path}/${data}`)
+      this.http.delete(`${Constants.API_ENDPOINT}/${path}/${data}`, httpOptions)
         .toPromise()
         .then(
           resp => {
