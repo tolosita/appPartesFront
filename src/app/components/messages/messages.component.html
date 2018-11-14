@@ -1,0 +1,46 @@
+<div id="modal1" class="modal" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="alertService.alertModal">
+  <div class="modal-content">
+    <h6>
+      <b>{{alertService.message}}</b>
+    </h6>
+  </div>
+  <div class="modal-footer">
+    <a class="waves-effect btn-flat" (click)="alertService.closeAlert()">Aceptar</a>
+  </div>
+</div>
+
+<div id="modal2" class="modal" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="alertService.confirmModal">
+  <div class="modal-content">
+    <h6>
+      <b>{{alertService.message}}</b>
+    </h6>
+  </div>
+  <div class="modal-footer">
+    <a class="waves-effect btn-flat" (click)="alertService.closeConfirm(false)">Cancelar</a>
+    <a class="waves-effect btn-flat" (click)="alertService.closeConfirm(true)">Aceptar</a>
+  </div>
+</div>
+
+<div id="modal3" class="modal loader" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="alertService.loaderModal">
+  <div class="modal-content">
+    <div class="row m-b-0">
+      <div class="col s4">
+        <div class="preloader-wrapper small active">
+          <div class="spinner-layer spinner-blue-only">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col s8 no-padding">
+        <h6>Espere un momento por favor...</h6>
+      </div>
+    </div>
+  </div>

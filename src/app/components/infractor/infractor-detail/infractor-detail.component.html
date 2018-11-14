@@ -1,0 +1,74 @@
+<nav class="blue darken-4">
+  <div class="nav-wrapper">
+    <ul class="left">
+      <li>
+        <a routerLink="/infractor-list" class="waves-effect waves-light">
+          <i class="material-icons">arrow_back</i>
+        </a>
+      </li>
+    </ul>
+    <a class="brand-logo center">
+      <h6 class="m-t-2rm">
+        <span *ngIf="estado">Nuevo Infractor</span>
+        
+        <span *ngIf="!estado">{{infractor.nombre + ' ' + infractor.apellidos}}</span>
+      </h6>
+    </a>
+    <ul class="right">
+      <li>
+        <a (click)="deleteInfractor()" *ngIf="!estado" class="waves-effect waves-light">
+          <i class="material-icons">delete</i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="section">
+    <div class="card-panel center-align">
+      <div class="row">
+        <label *ngIf="estado">Los campos con (*) son obligatorios</label>
+        <br>
+        <br>
+        <div class="col s10 offset-s1">
+          <div class="row">
+            <div class="input-field col s12">
+              <select id="tipoDocumento" materialize="material_select" [(ngModel)]="tipoDocumento">
+                <option *ngFor="let tipoDocumento of tipoDocumentoService.tipoDocumentos" [value]="tipoDocumento.codigo">{{tipoDocumento.tipo}}</option>
+              </select>
+              <label for="tipoDocumento">Tipo de Documento</label>
+            </div>
+            <div class="input-field col s12">
+              <input id="identificacion" type="number" class="validate" [(ngModel)]="infractor.identificacion">
+              <label for="identificacion" [ngClass]="{'active': !estado}">*Identificación</label>
+            </div>
+            <div class="input-field col s12">
+              <input id="nombre" type="text" class="validate" [(ngModel)]="infractor.nombre">
+              <label for="nombre" [ngClass]="{'active': !estado}">*Nombre</label>
+            </div>
+            <div class="input-field col s12">
+              <input id="apellido" type="text" class="validate" [(ngModel)]="infractor.apellidos">
+              <label for="apellido" [ngClass]="{'active': !estado}">*Apellidos</label>
+            </div>
+            <div class="input-field col s12">
+              <select id="grado" materialize="material_select" [(ngModel)]="grado">
+                <option *ngFor="let grado of gradoService.grados" [value]="grado.codigo">{{grado.nombre}}</option>
+              </select>
+              <label for="grado">Grado</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fixed-action-btn">
+    <a (click)="saveInfractor()" *ngIf="estado" class="btn-floating btn-large waves-effect waves-light z-depth-3 blue darken-4">
+      <i class="material-icons">save</i>
+    </a>
+    <a (click)="editInfractor()" *ngIf="!estado" class="btn-floating btn-large waves-effect waves-light z-depth-3 blue darken-4">
+      <i class="material-icons">edit</i>
+    </a>
+  </div>
+</div>

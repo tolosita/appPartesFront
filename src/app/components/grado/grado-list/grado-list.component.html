@@ -1,0 +1,58 @@
+<div class="navbar-fixed">
+  <nav class="blue darken-4">
+    <div class="nav-wrapper" *ngIf="!buscando">
+      <ul class="left">
+        <li>
+          <a materialize="sideNav" [materializeParams]="[{closeOnClick: true}]" data-activates="slide-out" class="waves-effect waves-light">
+            <i class="material-icons">menu</i>
+          </a>
+        </li>
+      </ul>
+      <a class="brand-logo center">
+        <h6 class="m-t-2rm">Grados</h6>
+      </a>
+      <ul class="right">
+        <li>
+          <a (click)="focusBuscar()" class="waves-effect waves-light">
+            <i class="material-icons">search</i>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav-wrapper" *ngIf="buscando">
+      <div class="input-field">
+        <input id="search" type="search" #filtro (blur)="blurBuscar()" (keyup)="filtrar(filtro.value)">
+        <label class="label-icon" for="search">
+          <i class="material-icons">search</i>
+        </label>
+        <i class="material-icons" (click)="clearBuscar()">close</i>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<div class="container">
+  <div *ngIf="gradoService.filters$ | async as grados">
+    <ul class="collection m-b-0" *ngIf="grados.length">
+      <li class="collection-item waves-effect list" *ngFor="let grado of grados" routerLink="/grado-detail/{{grado.codigo}}">
+        <h6>
+          <b>{{grado.codigo}}</b> - {{grado.nombre}}
+        </h6>
+      </li>
+    </ul>
+    <div class="center-align" *ngIf="!grados.length && !buscando">
+      <br>
+      <h6>
+        <b>No se encuentra ningun registro</b>
+        <br>
+        <br>Toca "+" para crear tu primer grado
+      </h6>
+    </div>
+  </div>
+
+  <div class="fixed-action-btn" *ngIf="!buscando">
+    <a routerLink="/grado-detail/0" class="btn-floating btn-large waves-effect waves-light z-depth-3 blue darken-4">
+      <i class="material-icons">add</i>
+    </a>
+  </div>
+</div>

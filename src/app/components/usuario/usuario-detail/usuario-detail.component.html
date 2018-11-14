@@ -1,0 +1,88 @@
+<nav class="blue darken-4">
+  <div class="nav-wrapper">
+    <ul class="left">
+      <li>
+        <a routerLink="/usuario-list" class="waves-effect waves-light">
+          <i class="material-icons">arrow_back</i>
+        </a>
+      </li>
+    </ul>
+    <a class="brand-logo center">
+      <h6 class="m-t-2rm">
+        <span *ngIf="estado">Nuevo Usuario</span>
+        
+        <span *ngIf="!estado">{{usuario.nombre + ' ' + usuario.apellidos}}</span>
+      </h6>
+    </a>
+    <ul class="right">
+      <li>
+        <a (click)="deleteUsuario()" *ngIf="!estado" class="waves-effect waves-light">
+          <i class="material-icons">delete</i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="section">
+    <div class="card-panel center-align">
+      <div class="row">
+        <label *ngIf="estado">Los campos con (*) son obligatorios</label>
+        <br>
+        <br>
+        <div class="col s10 offset-s1">
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="identificacion" type="number" class="validate" [(ngModel)]="usuario.identificacion">
+              <label for="identificacion">*identificación</label>
+            </div>
+            <div class="input-field col s12">
+              <input id="nombre" type="text" class="validate" [(ngModel)]="usuario.nombre">
+              <label for="nombre">*Nombre</label>
+            </div>
+            <div class="input-field col s12">
+              <input id="apellidos" type="text" class="validate" [(ngModel)]="usuario.apellidos">
+              <label for="apellidos">*Apellidos</label>
+            </div>
+            <div class="input-field col s12">
+              <input id="usuario" type="text" class="validate" [(ngModel)]="usuario.usuario">
+              <label for="usuario">*Usuario</label>
+            </div>
+            <div class="input-field col s12">
+              <input id="clave" type="password" class="validate" [(ngModel)]="usuario.clave">
+              <label for="clave">*Clave</label>
+            </div>
+            <div class="input-field col s12">
+              <input id="email" type="email" class="validate" [(ngModel)]="usuario.correo">
+              <label for="email">*Correo</label>
+            </div>
+            <div class="input-field col s12">
+              <select id="tipo" materialize="material_select" [(ngModel)]="usuario.tipo">
+                <option [value]="false" selected>Estandar</option>
+                <option [value]="true">Administrador</option>
+              </select>
+              <label for="tipo">Tipo</label>
+            </div>
+            <div class="input-field col s12" *ngIf="!estado">
+              <select id="estado" materialize="material_select" [(ngModel)]="usuario.estado">
+                <option [value]="true">Activo</option>
+                <option [value]="false">Inactivo</option>
+              </select>
+              <label for="estado">Estado</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fixed-action-btn">
+    <a (click)="saveUsuario()" *ngIf="estado" class="btn-floating btn-large waves-effect waves-light z-depth-3 blue darken-4">
+      <i class="material-icons">save</i>
+    </a>
+    <a (click)="editUsuario()" *ngIf="!estado" class="btn-floating btn-large waves-effect waves-light z-depth-3 blue darken-4">
+      <i class="material-icons">edit</i>
+    </a>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+<nav class="blue darken-4">
+  <div class="nav-wrapper">
+    <ul class="left">
+      <li>
+        <a routerLink="/tipoDocumento-list" class="waves-effect waves-light">
+          <i class="material-icons">arrow_back</i>
+        </a>
+      </li>
+    </ul>
+    <a class="brand-logo center">
+      <h6 class="m-t-2rm f-s-0">
+        <span *ngIf="estado">Nuevo Tipo de Documento</span>
+        
+        <span *ngIf="!estado">{{tipoDocumento.tipo}}</span>
+      </h6>
+    </a>
+    <ul class="right">
+      <li>
+        <a (click)="deleteTipoDocumento()" *ngIf="!estado" class="waves-effect waves-light">
+          <i class="material-icons">delete</i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="section">
+    <div class="card-panel center-align">
+      <div class="row">
+        <label *ngIf="estado">Los campos con (*) son obligatorios</label>
+        <br>
+        <br>
+        <div class="col s10 offset-s1">
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="name" type="text" class="validate" [(ngModel)]="tipoDocumento.tipo">
+              <label for="name" [ngClass]="{'active': !estado}">*Nombre del tipo</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fixed-action-btn">
+    <a (click)="saveTipoDocumento()" *ngIf="estado" class="btn-floating btn-large waves-effect waves-light z-depth-3 blue darken-4">
+      <i class="material-icons">save</i>
+    </a>
+    <a (click)="editTipoDocumento()" *ngIf="!estado" class="btn-floating btn-large waves-effect waves-light z-depth-3 blue darken-4">
+      <i class="material-icons">edit</i>
+    </a>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<div *ngIf="logueado$">
+  <ul id="slide-out" class="side-nav">
+    <li>
+      <div class="user-view">
+        <div class="background blue darken-4">
+        </div>
+        <img class="app-icon-menu medium" alt="Icono app">
+        <span class="white-text right" *ngIf="authService.user.tipo">
+          <b>Administrador</b>
+        </span>
+        <span class="white-text name m-t-0">{{authService.user.nombre}}</span>
+        <span class="white-text email">{{authService.user.correo}}</span>
+      </div>
+    </li>
+    <li *ngFor="let item of nav">
+      <a (click)="routerLink(item)" class="waves-effect" *ngIf="item.url && (!item.confirm || authService.user.tipo)">
+        <i class="material-icons">{{item.icon}}</i>{{item.name}}
+      </a>
+      <ul materialize="collapsible" data-collapsible="accordion" class="collapsible collapsible-accordion" *ngIf="!item.url && (!item.confirm || authService.user.tipo)">
+        <li>
+          <a class="collapsible-header waves-effect">
+            <i class="material-icons">{{item.icon}}</i>{{item.name}}
+          </a>
+          <div class="collapsible-body">
+            <li *ngFor="let child of item.children">
+              <a (click)="routerLink(child)" class="waves-effect" *ngIf="child.url">
+                {{child.name}}
+              </a>
+            </li>
+          </div>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <div class="divider"></div>
+    </li>
+    <li>
+      <a (click)="onLogout()" class="waves-effect">
+        <i class="material-icons">exit_to_app</i>Cerrar Sesión
+      </a>
+    </li>
+  </ul>
+</div>

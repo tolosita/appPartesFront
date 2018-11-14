@@ -1,0 +1,115 @@
+<nav class="blue darken-4">
+  <div class="nav-wrapper">
+    <ul class="left">
+      <li>
+        <a routerLink="/parte-list" class="waves-effect waves-light">
+          <i class="material-icons">arrow_back</i>
+        </a>
+      </li>
+    </ul>
+    <a class="brand-logo center">
+      <h6 class="m-t-2rm">
+        <span *ngIf="estado">Nuevo</span>
+        Parte
+        <span *ngIf="!estado">{{parte.codigo}}</span>
+      </h6>
+    </a>
+    <ul class="right">
+      <li>
+        <a (click)="deleteParte()" *ngIf="!estado" class="waves-effect waves-light">
+          <i class="material-icons">delete</i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="section no-padding">
+    <div class="card-panel center-align m-b-0">
+      <div class="row">
+        <label *ngIf="estado">Los campos con (*) son obligatorios</label>
+        <br>
+        <br>
+        <div class="col s10 offset-s1">
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="codigo" type="number" class="validate" [(ngModel)]="parte.codigo" disabled>
+              <label for="codigo" [ngClass]="{'active': !estado}">Código Parte</label>
+            </div>
+            <div class="input-field col s12">
+              <input id="fechaParte" type="date" class="validate" [(ngModel)]="fecha">
+              <label for="fechaParte" class="active">*Fecha Parte</label>
+            </div>
+            <div class="input-field col s12">
+              <input id="infractor" type="text" class="validate" [(ngModel)]="infractor" materialize="autocomplete" [materializeParams]="[{}]"
+                [materializeActions]="infractorAutoComplete">
+              <label for="infractor" [ngClass]="{'active': !estado}">*Infractor</label>
+            </div>
+            <div class="input-field col s12">
+              <input id="correo" type="text" class="validate" [(ngModel)]="parte.correo">
+              <label for="correo" [ngClass]="{'active': !estado}">*Correo Notificación</label>
+            </div>
+            <div class="input-field col s12">
+              <select id="dependencia" materialize="material_select" [(ngModel)]="dependencia">
+                  <option value="" disabled selected>Seleccione una dependencia</option>
+                <option *ngFor="let dependencia of dependenciaService.dependencias" [value]="dependencia.id">{{dependencia.nombre}}</option>
+              </select>
+              <label for="dependencia">*Dependencia</label>
+            </div>
+            <div class="input-field col s12">
+              <input id="lugar" type="text" class="validate" [(ngModel)]="parte.lugar">
+              <label for="lugar" [ngClass]="{'active': !estado}">*Lugar Parte</label>
+            </div>
+            <div class="input-field col s12">
+              <select multiple id="tipoComparendo" materialize="material_select" [(ngModel)]="comparendoParte">
+                <option value="" disabled selected>Seleccione un tipo</option>
+                <option *ngFor="let tipoComparendo of tipoComparendoService.tipoComparendos" [value]="tipoComparendo.codigo">{{tipoComparendo.tipo}}</option>
+              </select>
+              <label for="tipoComparendo">*Tipo de Comparendo</label>
+            </div>
+            <div class="input-field col s12">
+              <select id="tipoVehiculo" materialize="material_select" [(ngModel)]="tipoVehiculo">
+                <option *ngFor="let tipoVehiculo of tipoVehiculoService.tipoVehiculos" [value]="tipoVehiculo.codigo">{{tipoVehiculo.tipo}}</option>
+              </select>
+              <label for="tipoVehiculo">*Tipo de Vehículo</label>
+            </div>
+            <div class="input-field col s12">
+              <input id="placa" type="text" class="validate" [(ngModel)]="parte.placa">
+              <label for="placa" [ngClass]="{'active': !estado}">Placa</label>
+            </div>
+            <div class="input-field col s12">
+              <textarea id="descripcion" type="text" class="validate materialize-textarea" [(ngModel)]="parte.descripcion"></textarea>
+              <label for="descripcion" [ngClass]="{'active': !estado}">*Descripción Parte</label>
+            </div>
+
+            <img [src]="urlFoto" alt="Foto de la infracción" style="width:250px;height:175px">
+            <div class="row file-field input-field">
+              <div class="btn">
+                <span>Foto</span>
+                <input id="foto" type="file" accept="image/*" (change)="onFileSelection($event)">
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+              </div>
+            </div>
+            
+            <div class="input-field col s12">
+              <input id="usuario" type="text" class="validate" [(ngModel)]="authService.user.nombre" placeholder=" " disabled>
+              <label for="usuario" class="active">*Usuario</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fixed-action-btn">
+    <a (click)="saveParte()" *ngIf="estado" class="btn-floating btn-large waves-effect waves-light z-depth-3 blue darken-4">
+      <i class="material-icons">save</i>
+    </a>
+    <a (click)="editParte()" *ngIf="!estado && authService.user.tipo" class="btn-floating btn-large waves-effect waves-light z-depth-3 blue darken-4">
+      <i class="material-icons">edit</i>
+    </a>
+  </div>
+</div>
