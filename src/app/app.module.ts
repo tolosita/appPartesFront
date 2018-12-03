@@ -44,6 +44,7 @@ import { TipoVehiculoService } from './services/tipo-vehiculo.service';
 import { UsuarioService } from './services/usuario.service';
 import { InfractorService } from './services/infractor.service';
 import { ParteService } from './services/parte.service';
+import { ReportsService } from './services/reports.service';
 
 @NgModule({
   declarations: [
@@ -92,7 +93,8 @@ import { ParteService } from './services/parte.service';
     TipoVehiculoService,
     UsuarioService,
     InfractorService,
-    ParteService
+    ParteService,
+    ReportsService
   ],
   bootstrap: [AppComponent]
 })

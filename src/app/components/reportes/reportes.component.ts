@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ReportsService } from '../../services/reports.service';
 
 @Component({
   selector: 'app-reportes',
@@ -6,13 +7,23 @@ import { Component, OnInit } from '@angular/core';
   styles: []
 })
 export class ReportesComponent implements OnInit {
-  // Pie
-  pieChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail Sales'];
-  pieChartData: number[] = [300, 500, 100];
-  pieChartType: string = 'pie';
 
-  constructor() { }
+  pieChartLabels: string[] = [];
+  pieChartData: number[] = [];
+  //pieChartColors: string[] = [];
+
+  constructor(
+    private reportsService: ReportsService
+  ) { }
 
   ngOnInit() {
+    this.reportsService.comparendosRealizados().then((data: any[]) => {
+      console.log(data.map(item => item.tipoInfraccion));
+
+      this.pieChartLabels.push(...data.map(item => item.tipoInfraccion));
+      this.pieChartData = data.map(item => item.repeticiones);
+    });
+
   }
+
 }

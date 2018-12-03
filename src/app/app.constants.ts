@@ -10,5 +10,5 @@ export class Constants {
     public static PATH_PARTES = 'partes';
     public static PATH_COMPARENDO_PARTES = 'comparendosPartes';
     public static PATH_LOAD_FILE = 'image';
-    public static PATH_NOTIFICACION_PARTE = 'notificar';
+    public static PATH_REPORTES = 'reportes';
 }
