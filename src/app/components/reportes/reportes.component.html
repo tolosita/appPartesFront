@@ -1,0 +1,29 @@
+<div class="navbar-fixed">
+  <nav class="blue darken-4">
+    <div class="nav-wrapper" *ngIf="!buscando">
+      <ul class="left">
+        <li>
+          <a materialize="sideNav" [materializeParams]="[{closeOnClick: true}]" data-activates="slide-out" class="waves-effect waves-light">
+            <i class="material-icons">menu</i>
+          </a>
+        </li>
+      </ul>
+      <a class="brand-logo center">
+        <h6 class="m-t-2rm">Reportes</h6>
+      </a>
+    </div>
+  </nav>
+</div>
+<div class="container">
+  <div class="row">
+
+    <div class="col s12">
+      <div class="card-panel">
+        <div style="display: block">
+          <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"></canvas>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

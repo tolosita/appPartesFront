@@ -23,6 +23,7 @@ import { InfractorDetailComponent } from './components/infractor/infractor-detai
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { ParteListComponent } from './components/parte/parte-list/parte-list.component';
 import { ParteDetailComponent } from './components/parte/parte-detail/parte-detail.component';
+import { ReportesComponent } from './components/reportes/reportes.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -45,7 +46,8 @@ const routes: Routes = [
   { path: 'infractor-detail/:id', component: InfractorDetailComponent, canActivate: [AuthGuard] },
   { path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard] },
   { path: 'parte-list', component: ParteListComponent, canActivate: [AuthGuard] },
-  { path: 'parte-detail/:id', component: ParteDetailComponent, canActivate: [AuthGuard] }
+  { path: 'parte-detail/:id', component: ParteDetailComponent, canActivate: [AuthGuard] },
+  { path: 'reportes', component: ReportesComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

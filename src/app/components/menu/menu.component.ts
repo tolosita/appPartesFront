@@ -33,7 +33,7 @@ export class MenuComponent implements OnInit {
           { "url": '/tipoVehiculo-list', "name": 'Tipo de Vehiculos' }
         ]
       },
-      { "url": '/', "name": 'Reportes', "icon": 'assignment', 'confirm': false },
+      { "url": '/reportes', "name": 'Reportes', "icon": 'assignment', 'confirm': false },
       { "url": '/usuario-list', "name": 'Usuarios', "icon": 'supervisor_account', 'confirm': true },
       { "url": '/perfil', "name": 'Configuración', "icon": 'settings', 'confirm': false }
     ];

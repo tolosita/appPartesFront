@@ -1,8 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-
 import { DependenciaService } from '../../../services/dependencia.service';
-import { timeout } from 'q';
-import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-dependencia',

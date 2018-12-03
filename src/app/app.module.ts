@@ -1,10 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms'
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { MaterializeModule } from 'angular2-materialize';
+import { ChartsModule } from 'ng2-charts';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -29,6 +30,7 @@ import { InfractorDetailComponent } from './components/infractor/infractor-detai
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { ParteDetailComponent } from './components/parte/parte-detail/parte-detail.component';
 import { ParteListComponent } from './components/parte/parte-list/parte-list.component';
+import { ReportesComponent } from './components/reportes/reportes.component';
 
 import { AppService } from './app.service';
 import { AuthService } from './auth/auth.service';
@@ -42,7 +44,6 @@ import { TipoVehiculoService } from './services/tipo-vehiculo.service';
 import { UsuarioService } from './services/usuario.service';
 import { InfractorService } from './services/infractor.service';
 import { ParteService } from './services/parte.service';
-
 
 @NgModule({
   declarations: [
@@ -68,14 +69,16 @@ import { ParteService } from './services/parte.service';
     InfractorDetailComponent,
     PerfilComponent,
     ParteDetailComponent,
-    ParteListComponent
+    ParteListComponent,
+    ReportesComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    MaterializeModule
+    MaterializeModule,
+    ChartsModule
   ],
   providers: [
     AppService,
